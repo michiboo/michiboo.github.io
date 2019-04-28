@@ -135,21 +135,40 @@ var init = function () {
   renderLoop.play();
   //setAbsolutePositions();
 };
-setTimeout(function () {init();}, 0);
-document.addEventListener ('keydown', function (event){
-    console.log (event.which);
-}); 
 
-setTimeout(function(){alert("hi")}, 10);
-const ke = new KeyboardEvent("keydown", {
-    bubbles: true, cancelable: true, keyCode: 13
-});
+function type(x, c, letter){
+  
+  ctx.clearRect(0, 0, 10, 50);
+  setTimeout(function(){
+    $(".key-" + x).addClass("key--down");
+    currentstr = letter + currentstr;
+    ctx.strokeText(letter, 10+c*20, 50);
 
-// to do stimulate input Micky
-document.body.dispatchEvent(ke);
-document.body.dispatchEvent(ke);
-document.body.dispatchEvent(ke);
-document.body.dispatchEvent(ke);
-document.body.dispatchEvent(ke);
-document.body.dispatchEvent(ke);
-document.body.dispatchEvent(ke);
+  }
+    , 800*c);
+   
+
+setTimeout(function(){
+  $(".key-" + x).removeClass("key--down");
+}, 800*c + 800);
+}
+var cantype = document.getElementById("typing");
+var ctx = cantype.getContext("2d");
+var currentstr = '|'
+ctx.font = "30px Arial";
+//ctx.strokeText("Hello World|", 10, 50);
+//cantype.clearRect(0, 0, cantype.width, cantype.height);
+// Hi, I am
+type(72,1, 'H');
+type(73,2, ' i');
+type(188,3, ' ,');
+type(73,4, ' I');
+type(65,5, ' a');
+type(77,6, ' m');
+
+// micky
+type(77,7,'  M');
+type(73,8,'   i');
+type(67,9,'  c');
+type(75,10,'  k');
+type(89,11,'  y');
