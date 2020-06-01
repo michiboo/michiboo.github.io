@@ -1,0 +1,35 @@
+#anime {
+  background: black;
+  /* animation: mymove 5s infinite; */
+  height: 100%;
+  width: 100%;
+  position:fixed;
+  padding:0;
+  margin:0;
+  top:0;
+  left:0;
+  color: green;
+  font-size: 80px;
+  /* visibility: hidden;  */
+  /* opacity: 0; */
+  /* transition: visibility 0s 10s, opacity 10s linear; */
+  }
+
+#anime div{
+  animation: mymove 5s;
+}
+
+@keyframes displaceContent {
+  from { transform : translateY(0em) }
+  to   { transform : translateY(3em) } /* slide down to make room for advertisements */
+}
+  
+  @keyframes mymove {
+    from {top: 0px;}
+    to {top: 200px;}
+  }
+
+  body, html {
+    height: 100%;
+  }
+  

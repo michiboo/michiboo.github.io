@@ -1,174 +1,53 @@
-console.clear();
-var _minSize = window.innerWidth < 1023 ? 8 : 16;
-var _maxSize = window.innerWidth < 1023 ? 16 : 32;
-var _isShifted = false;
-var _canvas = $('#mainCanvas')[0];
-var _ctx = _canvas.getContext('2d');
-var _particleCount = 20;
-var _keySizeX = window.innerWidth * 0.04 / 2 + 2;
-var _keySizeY = window.innerWidth * 0.04 / 2 + 2;
-var _colors = ["#f8bd2a", "#5ac1e2", "#68d7c5", "#f5625e", "#eeeeee"];
-var Particle = /** @class */function () {
-  function Particle(x, y) {
-    // Settings
-    this.color = "";
-    this.size = 0;
-    this.radius = 0;
-    this.angle = 0;
-    // Current
-    this.x = 0;
-    this.y = 0;
-    // Origin
-    this.x1 = 0;
-    this.y1 = 0;
-    // Destination
-    this.x2 = 0;
-    this.y2 = 0;
-    // Random settings
-    this.size = Math.random() * _minSize + (_maxSize - _minSize);
-    this.radius = Math.random() * 100 + 100;
-    this.angle = Math.random() * 360 * Math.PI / 180;
-    this.color = _colors[Math.floor(Math.random() * _colors.length)];
-    // Set current
-    this.x = x;
-    this.y = y;
-    // Set origin
-    this.x1 = x;
-    this.y1 = y;
-    // Set destination
-    this.x2 = x + this.radius * Math.sin(this.angle);
-    this.y2 = y + this.radius * Math.cos(this.angle);
+function play() {
+    document.querySelector(".box").className = "box";
+    window.requestAnimationFrame(function(time) {
+      window.requestAnimationFrame(function(time) {
+        document.querySelector(".box").className = "box changing";
+      });
+    });
   }
-  Particle.prototype.draw = function () {
-    _ctx.beginPath();
-    _ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI, true);
-    _ctx.fillStyle = this.color;
-    _ctx.fill();
-  };
-  return Particle;
-}();
-var setAbsolutePositions = function () {
-  var _keyPos = [];
-  var _rowPos = [];
-  $('.keyboard').height($('.keyboard').height());
-  $('.keyboard').width($('.keyboard').width());
-  $('.row').each(function (_in) {_rowPos.push($('.row').eq(_in).position().top);});
-  $('.key').each(function (_in) {_keyPos.push($('.key').eq(_in).position().left);});
-  $('.row').each(function (_i) {
-    $('.row').eq(_i).css({
-      top: _rowPos[_i],
-      position: "absolute" });
+  document.querySelector(".runButton").addEventListener("click", play, false);
 
-  });
-  $('.key').each(function (_in) {
-    $('.key').eq(_in).css({
-      left: _keyPos[_in],
-      position: "absolute" });
-
-  });
-};
-$('.key').on('touchstart', function (evt) {
-  onKeyPressParticleHandler(evt.touches[0].pageX, evt.touches[0].pageY);
-});
-$(window).on('keydown', function (evt) {
-  if (evt.keyCode === 16) {
-    _isShifted = true;
-  }
-  ;
-  var _$tar = $(".key-" + evt.keyCode);
-  if (_$tar.length < 1)
-  return;
-  if (_isShifted) {
-    if (_$tar.has(".alt").length > 0) {
-      _$tar.addClass("key--down-shifted");
-    } else
-    {
-      _$tar.addClass("key--down");
-    }
-  } else
-  {
-    _$tar.addClass("key--down");
-  }
-  onKeyPressParticleHandler(_$tar.offset().left + _keySizeX, _$tar.offset().top + _keySizeY);
-});
-$(window).on('keyup', function (evt) {
-  if (evt.keyCode === 16) {
-    _isShifted = false;
-  }
-  ;
-  var _$tar = $(".key-" + evt.keyCode);
-  _$tar.removeClass("key--down");
-  _$tar.removeClass("key--down-shifted");
-});
-var renderParticle = function (anim) {
-  for (var i = 0; i < anim.animatables.length; i++) {if (window.CP.shouldStopExecution(0)) break;
-    anim.animatables[i].target.draw();
-  }window.CP.exitedLoop(0);
-};
-var onKeyPressParticleHandler = function (x, y) {
-  var _particles = [];
-  for (var _i = 0; _i < _particleCount; _i++) {if (window.CP.shouldStopExecution(1)) break;
-    _particles.push(new Particle(x, y));
-  }window.CP.exitedLoop(1);
-  anime.timeline().add({
-    targets: _particles,
-    x: function (_p) {return _p.x2;},
-    y: function (_p) {return _p.y2;},
-    size: 0,
-    duration: Math.random() * 1000 + 500,
-    easing: 'easeOutExpo',
-    update: renderParticle });
-
-};
-var renderLoop = anime({
-  duration: Infinity,
-  update: function () {
-    _ctx.clearRect(0, 0, _canvas.width, _canvas.height);
-  } });
-
-var init = function () {
-  _canvas.width = window.innerWidth * 2;
-  _canvas.height = window.innerHeight * 2;
-  _canvas.style.width = window.innerWidth + 'px';
-  _canvas.style.height = window.innerHeight + 'px';
-  _ctx.scale(2, 2);
-  renderLoop.play();
-  //setAbsolutePositions();
-};
-
-function type(x, c, letter){
-  
-  ctx.clearRect(0, 0, 10, 50);
-  setTimeout(function(){
-    $(".key-" + x).addClass("key--down");
-    currentstr = letter + currentstr;
-    ctx.strokeText(letter, 10+c*20, 50);
-
-  }
-    , 800*c);
-   
-
-setTimeout(function(){
-  $(".key-" + x).removeClass("key--down");
-}, 800*c + 800);
+  function dynamicallyLoadScript(url) {
+    var script = document.createElement("script");  // create a script DOM node
+    script.src = url;  // set its src to the provided URL
+    document.head.appendChild(script);  // add it to the end of the head section of the page (could change 'head' to 'body' to add it to the end of the body section instead)
 }
-var cantype = document.getElementById("typing");
-var ctx = cantype.getContext("2d");
-var currentstr = '|'
-ctx.font = "30px Arial";
-//ctx.strokeText("Hello World|", 10, 50);
-//cantype.clearRect(0, 0, cantype.width, cantype.height);
-// Hi, I am
-type(72,1, 'H');
-type(73,2, ' i');
-type(188,3, ' ,');
-type(73,4, ' I');
-type(65,5, ' a');
-type(77,6, ' m');
 
-// micky
-type(77,7,'  M');
-type(73,8,'   i');
-type(67,9,'  c');
-type(75,10,'  k');
-type(89,11,'  y');
+
+function dynamicallyLoadStyle(url) {
+    var script = document.createElement("link");  // create a script DOM node
+    script.rel = 'stylesheet';  // set its src to the provided URL
+    script.href= url;
+    document.head.appendChild(script);  // add it to the end of the head section of the page (could change 'head' to 'body' to add it to the end of the body section instead)
+}
+
+function template(){
+    var nav_bar = document.createElement("div");
+    nav_bar.setAttribute("class", "nav_bar");
+    var img = document.createElement('img');
+    img.setAttribute('src', './images/signature.png');
+    nav_bar.appendChild(img);
+    var nav_list = document.createElement("ul");
+    add_item_ul(nav_list);
+    nav_bar.appendChild(nav_list);
+    document.body.insertBefore(nav_bar, document.body.childNodes[0]);
+}
+
+
+function add_item_ul(nav_list) {
+    arr = ['Home', 'Education', 'Experience', 'Project', 'Open Source', 'Contact me'].reverse();
+    for(var i = 0; i < arr.length; i ++){
+        var opt = document.createElement('li');
+        var a_tag = document.createElement('a');
+        a_tag.appendChild(document.createTextNode(arr[i]));
+        a_tag.setAttribute("href",'');
+        opt.appendChild(a_tag);
+        nav_list.appendChild(opt); 
+      }
+  } 
+
+  template();
+  dynamicallyLoadStyle('./css/nav_bar.css');
+  dynamicallyLoadStyle('./css/anime.css');
+  dynamicallyLoadScript('./js/anime.js');

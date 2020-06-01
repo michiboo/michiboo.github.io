@@ -1,138 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="./index.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Unica+One" rel="stylesheet">
    
 </head>
-
 <body>
-
-<div class="container-fluid">
-    <div class="row" >
-          <canvas id="typing"></canvas>
-          <canvas id="mainCanvas"></canvas>
-          <div class="keyboard">
-            <div class="row row-top">
-              <div class="key key-192"><span>`</span>
-                <div class="alt"><span>~</span></div>
-              </div>
-              <div class="key key-49"><span>1</span>
-                <div class="alt"><span>!</span></div>
-              </div>
-              <div class="key key-50"><span>2</span>
-                <div class="alt"><span>@</span></div>
-              </div>
-              <div class="key key-51"><span>3</span>
-                <div class="alt"><span>#</span></div>
-              </div>
-              <div class="key key-52"><span>4</span>
-                <div class="alt"><span>$</span></div>
-              </div>
-              <div class="key key-53"><span>5</span>
-                <div class="alt"><span>%</span></div>
-              </div>
-              <div class="key key-54"><span>6</span>
-                <div class="alt"><span>^</span></div>
-              </div>
-              <div class="key key-55"><span>7</span>
-                <div class="alt"><span>&</span></div>
-              </div>
-              <div class="key key-56"><span>8</span>
-                <div class="alt"><span>*</span></div>
-              </div>
-              <div class="key key-57"><span>9</span>
-                <div class="alt"><span>(</span></div>
-              </div>
-              <div class="key key-48"><span>0</span>
-                <div class="alt"><span>)</span></div>
-              </div>
-              <div class="key key-189"><span>-</span>
-                <div class="alt"><span>_</span></div>
-              </div>
-              <div class="key key-187"><span>=</span>
-                <div class="alt"><span>+</span></div>
-              </div>
-            </div>
-            <div class="row row-1">
-              <div class="key key-81"><span>q</span></div>
-              <div class="key key-87"><span>w</span></div>
-              <div class="key key-69"><span>e</span></div>
-              <div class="key key-82"><span>r</span></div>
-              <div class="key key-84"><span>t</span></div>
-              <div class="key key-89"><span>y</span></div>
-              <div class="key key-85"><span>u</span></div>
-              <div class="key key-73"><span>i</span></div>
-              <div class="key key-79"><span>o</span></div>
-              <div class="key key-80"><span>p</span></div>
-              <div class="key key-219"> <span>[</span>
-                <div class="alt"> <span>{</span></div>
-              </div>
-              <div class="key key-221"> <span>]</span>
-                <div class="alt"> <span>}</span></div>
-              </div>
-              <div class="key key-220"> <span>\</span>
-                <div class="alt"> <span>|</span></div>
-              </div>
-            </div>
-            <div class="row row-2">   
-              <div class="key key-65"><span>a</span></div>
-              <div class="key key-83"><span>s</span></div>
-              <div class="key key-68"><span>d</span></div>
-              <div class="key key-70"><span>f</span></div>
-              <div class="key key-71"><span>g</span></div>
-              <div class="key key-72"><span>h</span></div>
-              <div class="key key-74"><span>j</span></div>
-              <div class="key key-75"><span>k</span></div>
-              <div class="key key-76"><span>l</span></div>
-              <div class="key key-186"><span>;</span>
-                <div class="alt"><span>:</span></div>
-              </div>
-              <div class="key key-222"><span>'</span>
-                <div class="alt"><span>"</span></div>
-              </div>
-            </div>
-            <div class="row row-3">
-              <div class="key key-90"><span>z</span></div>
-              <div class="key key-88"><span>x</span></div>
-              <div class="key key-67"><span>c</span></div>
-              <div class="key key-86"><span>v</span></div>
-              <div class="key key-66"><span>b</span></div>
-              <div class="key key-78"><span>n</span></div>
-              <div class="key key-77"><span>m</span></div>
-              <div class="key key-188"><span>,</span>
-                <div class="alt"></div>
-              </div>
-              <div class="key key-190"><span>.</span>
-                <div class="alt">></div>
-              </div>
-              <div class="key key-191"><span>/</span>
-                <div class="alt">?</div>
-              </div>
-            </div>
-          
-        
-        
-        
+    <div id="anime">
+    </div>
+    <!-- <canvas id="myCanvas"> 
+            Your browser does not support the canvas element.
+         </canvas> -->
+    <!-- <div class='nav_bar'> 
+        <img src="./images/signature.png">
+        <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="">Education</a></li>
+            <li><a href="">Experience</a></li>
+            <li><a href="">Project</a></li>
+            <li><a href="">Open Source</a></li>
+        </ul>
+    </div> -->
+    
+    <div class="box">
         </div>
-
-        
-</div>
-<div class="row" style="margin-top:500px;">
-    <button class="corner-button" style="margin:auto">
-        <span>Click me</span>
-      </button> 
-</div>
-
-</div>            
-  
+    
+    <div class="runButton">Click me to run the animation</div>
 </body>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.min.js"></script>
+
 <script src="./index.js"></script>
 
 
