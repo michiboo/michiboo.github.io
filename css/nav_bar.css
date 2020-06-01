@@ -1,0 +1,36 @@
+.nav_bar ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: inline;
+  }
+
+  .nav_bar{
+    margin: 2%;
+  }
+
+  .nav_bar img{
+    margin-left: 5%;
+  }
+
+  .nav_bar img{
+    display: inline;
+  }
+
+  .nav_bar li {
+    float: right;
+  }
+  
+  .nav_bar li a {
+    display: block;
+    color: #333;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  /* Change the link color to #111 (black) on hover */
+  .nav_bar li a:hover {
+    transform: scale(1.2);
+  }
